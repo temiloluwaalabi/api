@@ -147,3 +147,17 @@ export const uploadProfileImage = async(req, res, next) => {
         next(err)
     }
 }
+
+export const countByGender = async (req, res, next) => {
+    try{
+        const male = await User.countDocuments({user_gender: "Male"});
+        const female = await User.countDocuments({user_gender: "Female"});
+
+        res.status(200).json([
+            {type:"Male", count: male},
+            {type: "Female", count:female}
+        ]);
+    }catch(err){
+        next(err)
+    }
+}
