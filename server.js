@@ -68,7 +68,10 @@ app.use((req,res,next) => {
 })
 //connect to DB
 mongoose.set('strictQuery', true);
+
+
 connectDB();
+
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

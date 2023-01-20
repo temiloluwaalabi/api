@@ -9,10 +9,24 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isFeatured:{
+        type: Boolean,
+        default: false
+    },
+    lessonTotal: {
+        type: String
+    },
+    courseTime: {
+        type: String
+    },
     categories: {
         type: String,
-        required: true
     },
+    // category: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Category',
+    //     required: true
+    // },
     introVideo: {
         type: String,
     },
@@ -57,7 +71,10 @@ const CourseSchema = new mongoose.Schema({
     modules: {
         type: [String]
     },
-    
+    dateCreated: {
+        type: Date,
+        default: Date.now
+    },
     price: {
         type: String,
     },
