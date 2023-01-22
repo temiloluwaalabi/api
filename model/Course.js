@@ -21,12 +21,10 @@ const CourseSchema = new mongoose.Schema({
     },
     categories: {
         type: String,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Category',
+        required: true
     },
-    // category: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Category',
-    //     required: true
-    // },
     introVideo: {
         type: String,
     },
@@ -40,10 +38,18 @@ const CourseSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
-
-    feedback: {
-        type: Array,
-        default: []
+    ratings: [
+       { 
+        star: Number,
+        feedback: "",
+        reviewTitle: String,
+        postedBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    }
+    
+    ],
+    totalRating: {
+        type: String,
+        default: 0
     },
     language: {
         type:String
@@ -56,14 +62,7 @@ const CourseSchema = new mongoose.Schema({
 
     enrolledStudents: [String],
 
-    course_enrollment_count: {
-        type: Number,
-        default: 0
-    },
-    ratingCount: {
-        type: Number,
-        default: 0
-    },
+   
     skillLevel: {
         type: String,
         required: true

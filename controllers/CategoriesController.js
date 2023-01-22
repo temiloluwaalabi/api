@@ -1,4 +1,4 @@
-import Category from "../model/Category"
+import Category from "../model/Category.js"
 
 
 export const getCategories = async (req, res, next) => {
@@ -11,13 +11,27 @@ export const getCategories = async (req, res, next) => {
 }
 
 export const addCategory = async (req, res, next) => {
-    let category = new Category({
-        name: req.body.name
-    })
-    category = await category.save();
+    try{
+        // const {name} = req.body
+        // const foundCat = await Category.find(name);
 
-    if(!category) return res.status(404).json("The category can't be created")
-    res.json(category);
+        // if(foundCat) {
+        //     return res.json("Category already exists")
+        // }
+            
+        let category = new Category({
+                name: req.body.name
+            })
+            category = await category.save();
+            if(!category) return res.status(404).json("The category can't be created")
+            res.json(category);
+        
+    }catch(err){
+        next()
+    }
+    
+
+    
 }
 
 //update a course

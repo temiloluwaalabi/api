@@ -136,7 +136,6 @@ export const uploadProfileImage = async(req, res, next) => {
             const newPath = await uploader(path);
             urls.push(newPath);
             fs.unlinkSync(path);
-
         }
         const findUser = await User.findByIdAndUpdate(id, {
             picture: urls.map((file) => {return file})
@@ -153,7 +152,7 @@ export const countByGender = async (req, res, next) => {
         const male = await User.countDocuments({user_gender: "Male"});
         const female = await User.countDocuments({user_gender: "Female"});
 
-        res.status(200).json([
+        res.status(200).json([  
             {type:"Male", count: male},
             {type: "Female", count:female}
         ]);
@@ -161,3 +160,34 @@ export const countByGender = async (req, res, next) => {
         next(err)
     }
 }
+
+export const addToWishlist = async (req, res, next) => {
+    try {
+        // const id = req.user._id;
+        const {
+            courseId
+        } = req.params;
+        const {
+            userId
+        } = req.params;
+        const user_id = await User.findById(userId).exec();
+        if (user_id.wishlist.includes(courseId)) {
+            let result = await User.findByIdAndUpdate(userId, {
+                $pull: {
+                    wishlist: courseId
+                }
+            }, {new:true}).exec();
+           res.json("Already in wishlist")
+        }else{
+            let result = await User.findByIdAndUpdate(userId, {
+                $push: {
+                    wishlist: courseId
+                }
+            }, {new:true}).exec();
+            res.json(result)
+        }
+    } catch (err) {
+        next(err)
+    }
+}
+

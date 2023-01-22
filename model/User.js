@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema({
         min:2,
         max:50
     },
+    wishlist: [String],
     email: {
         type: String,
         required: true,
@@ -69,7 +70,7 @@ const UserSchema = new mongoose.Schema({
     // },
     refreshToken: [String],
     user_courses: [String],
-    wishliat: [String],
+    
 
 }, {timestamps: true})
 

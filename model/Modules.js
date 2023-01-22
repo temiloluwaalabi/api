@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 const ModuleSchema = new mongoose.Schema({
     courseId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course',
         required: true
     },
     moduleName: {

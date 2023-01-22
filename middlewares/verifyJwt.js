@@ -14,6 +14,7 @@ const verifyJwt = async (req, res, next) => {
             (err, decoded) => {
                 if(err) return res.sendStatus(403);//you're not authorized
                 req.user = decoded.UserInfo.username;
+                req.userId = decoded.UserInfo.userId
                 req.verify = verified;
                 req.roles = decoded.UserInfo.roles;
                 next();

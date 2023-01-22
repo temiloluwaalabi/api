@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose"
 const studentProfileSchema=mongoose.Schema({
     userId:{
@@ -11,7 +10,7 @@ const studentProfileSchema=mongoose.Schema({
     enrolledCourses:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"Courses"
+            ref:"Course"
         }
     ],
     

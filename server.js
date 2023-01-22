@@ -26,6 +26,7 @@ import logoutRoute from "./routes/auth/logout.js";
 import refreshRoute from "./routes/auth/refresh.js";
 import profileRoute from "./routes/auth/profileUpdate.js";
 import voterRoute from "./routes/voters/voters.js"
+import categoryRoute from "./routes/categories/category.js"
 import credentials from "./middlewares/credentials.js"
 import verifyJwt from "./middlewares/verifyJwt.js";
 import handleNewAdmin from "./controllers/RegisterAdmin.js";
@@ -95,11 +96,14 @@ app.use('/auth/profileUpdate', profileRoute)
 app.use("/api/user", userRoute );
 
 // app.use(verifyJwt)
+app.use("/api/category", categoryRoute);
 app.use("/api/courses", courseRoute );
 app.use("/api/modules", moduleRoute );
 
 //voters routes
 app.use('/api/voter', voterRoute);
+
+//category route
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;

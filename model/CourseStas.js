@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 import Course from "./Course";
 const CourseStatsSchema = new mongoose.Schema({
-    course_id: String,
+    course_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course',
+    },
     monthyData:[
         {
             month: String,
