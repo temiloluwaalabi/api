@@ -35,10 +35,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 dotenv.config()
 // app.use(cors())
-app.use(credentials);
-app.use(cors(corsOptions));
+
 const app = express();
 app.use(express.json());
+app.use(credentials);
+app.use(cors(corsOptions));
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
