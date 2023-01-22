@@ -69,9 +69,19 @@ app.use((req,res,next) => {
 })
 //connect to DB
 mongoose.set('strictQuery', true);
+// connectDB();
+//connect to db
+mongoose.connect(process.env.MONGO_URL)
+    .then(()=>{
+        //listen for request
+        app.listen(process.env.PORT, ()=>{
+        console.log('connected to db & Listening on port 4000');
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+})
 
-
-connectDB();
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
