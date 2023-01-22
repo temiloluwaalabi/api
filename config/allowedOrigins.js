@@ -1,6 +1,9 @@
 const allowedOrigins = [
     'http://localhost:3001', 
     'https://passv1.onrender.com',
+    'https://pass-api.onrender.com',
+    'https://aeeki.onrender.com/',
+    'aeeki.davidleotech.com',
     'https://www.google.com', 
     'https://admin-pass-apk.onrender.com',
     'https://admin-pass-apk.onrender.com/',
