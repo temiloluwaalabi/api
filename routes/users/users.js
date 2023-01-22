@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser, deleteUser, deleteCoursesOfferedByUser, getCoursesOfferedByUser, getUser, getUserCourse, getUsers, updateUser, uploadProfileImage, countByGender } from "../../controllers/UserController.js";
+import { createUser, deleteUser, deleteCoursesOfferedByUser, getCoursesOfferedByUser, getUser, getUserCourse, getUsers, updateUser, uploadProfileImage, countByGender, addToWishlist } from "../../controllers/UserController.js";
 import ROLES_LIST from "../../config/roles_list.js";
 import verifyJwt from "../../middlewares/verifyJwt.js";
 import verifyRoles from "../../middlewares/verifyRoles.js";
@@ -23,5 +23,7 @@ router.get("/", getUsers);//working
 router.get("/course/:id", getCoursesOfferedByUser)//working
 router.put("/:userId/:id", verifyJwt, deleteCoursesOfferedByUser);//working
 
-router.get("/countByGender", countByGender)
+router.get("/countByGender", countByGender)//failed
+//addtowihslist
+router.patch("/wishlist/:userId/:courseId", addToWishlist);//working
 export default router
