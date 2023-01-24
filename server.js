@@ -40,8 +40,9 @@ const app = express();
 app.use(express.json());
 app.use(credentials);
 app.use(cors(corsOptions));
-app.use(helmet())
-app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+
+// app.use(helmet())
+// app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 // app.use("/uploads", express.static('uploads')) //local starage
 
