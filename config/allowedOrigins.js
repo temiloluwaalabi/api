@@ -4,6 +4,7 @@ const allowedOrigins = [
     'https://pass-api.onrender.com',
     'https://aeeki.onrender.com/',
     'aeeki.davidleotech.com',
+    'davidleotech.com',
     'https://www.google.com', 
     // 'https://admin-pass-apk.onrender.com',
     // 'https://admin-pass-apk.onrender.com/',

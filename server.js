@@ -40,9 +40,8 @@ const app = express();
 app.use(express.json());
 app.use(credentials);
 app.use(cors(corsOptions));
-
-// app.use(helmet())
-// app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+app.use(helmet())
+app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 // app.use("/uploads", express.static('uploads')) //local starage
 
@@ -72,24 +71,24 @@ app.use((req,res,next) => {
 })
 //connect to DB
 mongoose.set('strictQuery', true);
-// connectDB();
-//connect to db
-mongoose.connect(process.env.MONGO_URL)
-    .then(()=>{
-        //listen for request
-        app.listen(process.env.PORT, ()=>{
-        console.log('connected to db & Listening on port 4000');
-        })
-    })
-    .catch((err)=>{
-        console.log(err);
-})
-
-
-// mongoose.connection.once('open', () => {
-//     console.log('Connected to MongoDB');
-//     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+connectDB();
+// //connect to db
+// mongoose.connect(process.env.MONGO_URL)
+//     .then(()=>{
+//         //listen for request
+//         app.listen(process.env.PORT, ()=>{
+//         console.log('connected to db & Listening on port 4000');
+//         })
+//     })
+//     .catch((err)=>{
+//         console.log(err);
 // })
+
+
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+})
 
 
 
